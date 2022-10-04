@@ -6,8 +6,10 @@
     "start": "ng serve",
     "build": "ng build --configuration=production --base-href=/2022_01-ci-di-my-angular-Ryoneme2/",
     "clean:dist": "rm -rf ./dist/my-agl/* && cp -rf ./dist/my-agl/* ./dist/gh-pages",
+    "check": "pwd",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration=production --base-href=/2022_01-ci-di-my-angular-Ryoneme2/ && cp ./dist/my-agl/index.html ./dist/my-agl/404.html && gh-pages -d ./dist/my-agl"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +31,7 @@
     "@angular/compiler-cli": "^14.2.0",
     "@types/jasmine": "~4.0.0",
     "angular-cli-ghpages": "1.0.3",
+    "gh-pages": "^4.0.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
