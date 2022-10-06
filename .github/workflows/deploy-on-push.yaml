@@ -8,10 +8,10 @@ jobs :
   deploy-gh-pages:
     runs-on : ubuntu-latest
     steps:
-      - uses : action/checkout@v3
+      - uses : actions/checkout@v3
         with:
           token : ${{ github.token }}
-      - uses : action/setup-node@v3
+      - uses : actions/setup-node@v3
         with : 
           node-version : 16
       - run : |
