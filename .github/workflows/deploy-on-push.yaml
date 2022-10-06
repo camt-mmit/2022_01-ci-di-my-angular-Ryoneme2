@@ -1,0 +1,25 @@
+name : deploy-on-push
+run-name: ${{ github.actor }} deploying gh pages
+on :
+  push:
+    branches:
+      - "main"
+jobs :
+  deploy-gh-pages:
+    runs-on : ubuntu-latest
+    steps:
+      - uses : action/checkout@v3
+        with:
+          token : ${{ github.token }}
+      - uses : action/setup-node@v3
+        with : 
+          node-version : 16
+      - run : |
+          git config --global user.email "${{ github.event.pusher.email }}"
+          git config --global user.name "${{ github.actor }}"
+      - run : npm install -g yarn
+      - run : yarn
+      - run : |
+          git remote set-url origin \
+          https://git:${{ github.token }}@github.com/${{ github.repository }}.git
+      - run : yarn deploy
