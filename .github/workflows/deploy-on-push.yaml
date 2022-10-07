@@ -12,6 +12,7 @@ jobs :
       - uses : actions/setup-node@v3
         with : 
           node-version : 16
+          cache : 'yarn'
       - name : config user git
         run : |
           git config --global user.email "${{ github.event.pusher.email }}"
