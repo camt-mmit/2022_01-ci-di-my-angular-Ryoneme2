@@ -1,9 +1,7 @@
 name : deploy-on-push
 run-name: ${{ github.actor }} deploying gh pages
 on :
-  push:
-    branches:
-      - "main"
+  - 'push'
 jobs :
   ci-feature:
     runs-on : ubuntu-latest
