@@ -5,7 +5,7 @@ on :
     branches:
       - "main"
 jobs :
-  deploy-gh-pages:
+  ci-feature:
     runs-on : ubuntu-latest
     steps:
       - uses : actions/checkout@v3
@@ -14,13 +14,32 @@ jobs :
       - uses : actions/setup-node@v3
         with : 
           node-version : 16
-      - run : |
+      - name : config user git
+        run : |
           git config --global user.email "${{ github.event.pusher.email }}"
           git config --global user.name "${{ github.actor }}"
       - run : npm install -g yarn
-      - run : yarn
-      - run : yarn test:ci
-      - run : |
-          git remote set-url origin \
-          https://git:${{ github.token }}@github.com/${{ github.repository }}.git
-      - run : yarn deploy
+      - run : yarn --frozen-lockfile
+      - name : build
+        run : yarn build
+      - name : test
+        run : yarn lint && yarn test:ci
+  # deploy-gh-pages:
+  #   runs-on : ubuntu-latest
+  #   steps:
+  #     - uses : actions/checkout@v3
+  #       with:
+  #         token : ${{ github.token }}
+  #     - uses : actions/setup-node@v3
+  #       with : 
+  #         node-version : 16
+  #     - run : |
+  #         git config --global user.email "${{ github.event.pusher.email }}"
+  #         git config --global user.name "${{ github.actor }}"
+  #     - run : npm install -g yarn
+  #     - run : yarn
+  #     - run : yarn test:ci
+  #     - run : |
+  #         git remote set-url origin \
+  #         https://git:${{ github.token }}@github.com/${{ github.repository }}.git
+  #     - run : yarn deploy

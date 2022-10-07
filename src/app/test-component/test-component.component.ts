@@ -10,6 +10,6 @@ export class TestComponentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    title: 'test'
   }
-
 }
