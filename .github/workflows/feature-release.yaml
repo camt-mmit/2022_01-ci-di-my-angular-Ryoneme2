@@ -20,7 +20,8 @@ jobs :
           cache : 'yarn'
       - name : Set env var
         run : |
-          echo "VERSION=v${REF_NAME:refs/heads/b#}" >> $GITHUB_ENV
+          VERSION="${REF_NAME#refs/heads/b}"
+          echo "VERSION=v${VERSION}" >> $GITHUB_ENV
           echo "BRANCH_NAME=b${VERSION}" >> $GITHUB_ENV
           echo "TAG_NAME=v${VERSION}" >> $GITHUB_ENV
       - name : config user git
