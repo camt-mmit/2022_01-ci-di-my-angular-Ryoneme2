@@ -40,5 +40,5 @@ jobs :
           git checkout main
           git merge ${{ env.BRANCH_NAME }}
           git push origin main
-          git tag -a ${{ env.TAG_NAME }} -m "my version ${{ env.VERSION }}"
+          git tag -a ${{ env.TAG_NAME }} -m "my version ${{ env.VERSION }}" || echo "created tag done"
           git push origin main --tags
