@@ -32,8 +32,8 @@ jobs :
       - run : yarn --frozen-lockfile
       - name : build
         run : yarn build
-      - name : test
-        run : yarn lint && yarn test:ci
+      # - name : test
+      #   run : yarn lint && yarn test:ci
       - name : Merge feature to main
         run : |
           git fetch --unshallow
