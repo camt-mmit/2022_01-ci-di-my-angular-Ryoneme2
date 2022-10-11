@@ -43,5 +43,5 @@ jobs:
         run: |
           cd ./dist/gh-pages
           git add .
-          git commit -m "${{ github.actor }} publis version ${{ env.VERSION }}"
+          git commit -m "${{ github.actor }} published version ${{ env.VERSION }}"
           git push origin gh-pages
